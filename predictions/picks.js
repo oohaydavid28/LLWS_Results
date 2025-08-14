@@ -5,7 +5,7 @@ const officialPicks = [
     { gameId: 4,  winner: "Connecticut" },
     { gameId: 5,  winner: "Japan" },
     { gameId: 6,  winner: "South Carolina" },
-    { gameId: 7,  winner: "" },
+    { gameId: 7,  winner: "Chinese Taipei" },
     { gameId: 8,  winner: "" },
     { gameId: 9,  winner: "" },
     { gameId: 10, winner: "" },
