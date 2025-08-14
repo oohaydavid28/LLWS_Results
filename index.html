@@ -155,6 +155,16 @@ tbody.addEventListener('click', e => {
 lightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
 });
+
+const bracketModal = document.getElementById('bracketModal');
+const bracketImg = document.getElementById('bracketImg');
+
+bracketModal.addEventListener('click', e => {
+  // Close modal only if clicked outside the image
+  if (e.target !== bracketImg) {
+    bracketModal.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
