@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LLWS Bracket Results</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; }
+    .game { margin-bottom: 15px; }
+    label { margin-right: 15px; }
+    input[type="text"], input[type="email"], input[type="number"] {
+        padding: 6px; 
+        margin: 5px 0; 
+        width: auto; 
+        min-width: 200px;
+    }
+    .hidden { display: none; }
+    button { padding: 10px 20px; background: green; color: white; border: none; cursor: pointer; }
+    fieldset { border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; }
+    legend { font-weight: bold; }
+
+    summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  summary::before,
+  summary::after {
+    content: "\25BC"; /* Unicode ▼ chevron */
+    font-size: 1em;
+    margin: 0 0.5em;
+  }
+</style>
+</head>
+<body>
+
+<h1>LLWS 2025 Bracket Results</h1>
+
+<details style="border: 2px solid #333; padding: 15px; margin-bottom: 20px; background-color: #f8f8f8; max-width: 800px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif; line-height: 1.5;">
+    <summary style="margin-top: 0; text-align: center; font-size: 1.25em;">
+      🏆 Bracket Challenge Rules
+    </summary>
+    <div>
+      <p>This is a March Madness style bracket prediction contest. Scoring will be on a linear basis:</p>
+      <ul style="margin: 0 0 10px 20px;">
+        <li>Round 1 games = <strong>1 point</strong> each</li>
+        <li>Round 2 games = <strong>2 points</strong> each</li>
+        <li>Round 3 games = <strong>3 points</strong> each, and so on</li>
+      </ul>
+      <p>
+        Loser bracket games follow the same scoring system, with the first round in the loser bracket starting at <strong>1 point</strong>.
+      </p>
+      <p>
+        The bracket with the <strong>most points</strong> at the end wins and will receive <strong>100% of the prize pool</strong>.
+      </p>
+      <h3 style="margin-bottom: 5px;">Tie Breakers</h3>
+      <ol style="margin: 0 0 10px 20px;">
+        <li>Closest guess to the <strong>total runs</strong> in the USA vs International Championship game.</li>
+        <li>If still tied, whoever picked the correct <strong>championship game winner</strong> will win.</li>
+        <li>If still tied after both rules above, the prize money will be <strong>split evenly</strong> between tied brackets.</li>
+      </ol>
+    </div>
+  </details>
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <h2 style="margin-bottom: 10px;">Official Bracket</h2>
+    <img src="./brackets/official_bracket.jpg" 
+         alt="LLWS 2025 Offcial Bracket" 
+         style="max-width: 100%; height: auto; border: 1px solid #ccc; cursor: pointer;"
+         onclick="document.getElementById('bracketModal').style.display='flex'">
+</div>
+
+<!-- Modal -->
+<div id="bracketModal" 
+     style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; 
+            background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+    <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;"
+          onclick="document.getElementById('bracketModal').style.display='none'">&times;</span>
+    <img src="./brackets/official_bracket.jpg" 
+         alt="LLWS 2025 Offcial Bracket" 
+         style="max-width:90%; max-height:90%; border:4px solid white; box-shadow:0 0 20px black;">
+</div>
+
+<div style="max-width: 800px; margin: 20px auto; font-family: Arial, sans-serif;">
+    <h2 style="text-align: center;">Bracket Challenge Standings</h2>
+    <table style="width: 100%; border-collapse: collapse; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 10px; background: #f0f0f0;">Name</th>
+          <th style="border: 1px solid #ccc; padding: 10px; background: #f0f0f0;">Points</th>
+          <th style="border: 1px solid #ccc; padding: 10px; background: #f0f0f0;">Champion</th>
+          <th style="border: 1px solid #ccc; padding: 10px; background: #f0f0f0;">Third Place</th>
+          <th style="border: 1px solid #ccc; padding: 10px; background: #f0f0f0;">Bracket</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+      <img id="lb-img" src="" alt="Bracket" style="max-width:90%; max-height:90%; box-shadow:0 0 15px rgba(255,255,255,0.7); cursor: pointer;" />
+    </div>
+<script>
+
+const users = [
+    {name: "David", points: 3, champ: "Pennsylvania", third: "Texas", bracket: "./brackets/david_bracket.jpg"},
+    {name: "Bryan", points: 2, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/bryan_bracket.jpg"},
+    {name: "Dennis", points: 3, champ: "Chinese Taipei", third: "Japan", bracket: "./brackets/dennis_bracket.jpg"},
+    {name: "Holden", points: 3, champ: "Hawaii", third: "Mexico", bracket: "./brackets/holden_bracket.jpg"},
+    {name: "Jason", points: 1, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/jason_bracket.jpg"},
+    {name: "Joe", points: 3, champ: "Japan", third: "Chinese Taipei", bracket: "./brackets/joe_bracket.jpg"},
+    {name: "Stormy Daniels", points: 4, champ: "Venezuela", third: "Panama", bracket: "./brackets/justin_bracket.jpg"},
+    {name: "RaseyLaw", points: 2, champ: "Chinese Taipei", third: "Hawaii", bracket: "./brackets/kasey_bracket.jpg"},
+    {name: "Loso", points: 2, champ: "Puerto Rico", third: "Chinese Taipei", bracket: "./brackets/loso_bracket.jpg"},
+    {name: "Manwellington", points: 2, champ: "Peurto Rico", third: "Mexico", bracket: "./brackets/manny_bracket.jpg"},
+    {name: "Big Dick Milly", points: 2, champ: "Japan", third: "South Carolina", bracket: "./brackets/milly_bracket.jpg"}
+]
+
+users.sort((a, b) => b.points - a.points);
+
+const tbody = document.getElementById('tbody');
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+users.forEach((u, idx) => {
+  const tr = document.createElement('tr');
+  const bg = idx % 2 === 0 ? '#fff' : '#f9f9f9';
+  tr.style.background = bg;
+
+  tr.innerHTML = `
+    <td style="border:1px solid #ccc; padding:8px;">${u.name}</td>
+    <td style="border:1px solid #ccc; padding:8px; text-align:right;">${u.points}</td>
+    <td style="border:1px solid #ccc; padding:8px;">${u.champ}</td>
+    <td style="border:1px solid #ccc; padding:8px;">${u.third}</td>
+    <td style="border:1px solid #ccc; padding:8px; text-align:center;">
+      <img src="${u.bracket}" alt="${u.name} Bracket" style="width:60px; height:auto; cursor:pointer; border:1px solid #ddd;" />
+    </td>
+  `;
+  tbody.appendChild(tr);
+});
+
+tbody.addEventListener('click', e => {
+  if (e.target.tagName === 'IMG') {
+    lbImg.src = e.target.src;
+    lightbox.style.display = 'flex';
+  }
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
+</body>
+</html>
