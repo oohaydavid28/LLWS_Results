@@ -106,21 +106,31 @@
     <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
       <img id="lb-img" src="" alt="Bracket" style="max-width:90%; max-height:90%; box-shadow:0 0 15px rgba(255,255,255,0.7); cursor: pointer;" />
     </div>
-<script>
 
+<script src="predictions/picks.js"></script>
+<script>
 const users = [
-    {name: "David", points: 3, champ: "Pennsylvania", third: "Texas", bracket: "./brackets/david_bracket.jpg"},
-    {name: "Bryan", points: 2, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/bryan_bracket.jpg"},
-    {name: "Dennis", points: 3, champ: "Chinese Taipei", third: "Japan", bracket: "./brackets/dennis_bracket.jpg"},
-    {name: "Holden", points: 3, champ: "Hawaii", third: "Mexico", bracket: "./brackets/holden_bracket.jpg"},
-    {name: "Jason", points: 1, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/jason_bracket.jpg"},
-    {name: "Joe", points: 3, champ: "Japan", third: "Chinese Taipei", bracket: "./brackets/joe_bracket.jpg"},
-    {name: "Stormy Daniels", points: 4, champ: "Venezuela", third: "Panama", bracket: "./brackets/justin_bracket.jpg"},
-    {name: "RaseyLaw", points: 2, champ: "Chinese Taipei", third: "Hawaii", bracket: "./brackets/kasey_bracket.jpg"},
-    {name: "Loso", points: 2, champ: "Puerto Rico", third: "Chinese Taipei", bracket: "./brackets/loso_bracket.jpg"},
-    {name: "Manwellington", points: 2, champ: "Peurto Rico", third: "Mexico", bracket: "./brackets/manny_bracket.jpg"},
-    {name: "Big Dick Milly", points: 2, champ: "Japan", third: "South Carolina", bracket: "./brackets/milly_bracket.jpg"}
+    {name: "David", points: 0, champ: "Pennsylvania", third: "Texas", bracket: "./brackets/david_bracket.jpg", picks: davidPicks},
+    {name: "Bryan", points: 0, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/bryan_bracket.jpg", picks: bryanPicks},
+    {name: "Dennis", points: 0, champ: "Chinese Taipei", third: "Japan", bracket: "./brackets/dennis_bracket.jpg", picks: dennisPicks},
+    {name: "Holden", points: 0, champ: "Hawaii", third: "Mexico", bracket: "./brackets/holden_bracket.jpg", picks: holdenPicks},
+    {name: "Jason", points: 0, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/jason_bracket.jpg", picks: jasonPicks},
+    {name: "Joe", points: 0, champ: "Japan", third: "Chinese Taipei", bracket: "./brackets/joe_bracket.jpg", picks: joePicks},
+    {name: "Stormy Daniels", points: 0, champ: "Venezuela", third: "Panama", bracket: "./brackets/justin_bracket.jpg", picks: justinPicks},
+    {name: "RaseyLaw", points: 0, champ: "Chinese Taipei", third: "Hawaii", bracket: "./brackets/kasey_bracket.jpg", picks: kaseyPicks},
+    {name: "Loso", points: 0, champ: "Puerto Rico", third: "Chinese Taipei", bracket: "./brackets/loso_bracket.jpg", picks: losoPicks},
+    {name: "Manwellington", points: 0, champ: "Puerto Rico", third: "Mexico", bracket: "./brackets/manny_bracket.jpg", picks: mannyPicks},
+    {name: "Big Dick Milly", points: 0, champ: "Japan", third: "South Carolina", bracket: "./brackets/milly_bracket.jpg", picks: millyPicks}
 ]
+
+users.forEach(u => {
+  u.points = u.picks.reduce((sum, pick) => {
+    const official = officialPicks.find(op => op.gameId === pick.gameId);
+    return sum + (official && official.winner && official.winner === pick.winner
+      ? pointValue(pick.gameId)
+      : 0);
+  }, 0);
+});
 
 users.sort((a, b) => b.points - a.points);
 
@@ -165,6 +175,16 @@ bracketModal.addEventListener('click', e => {
     bracketModal.style.display = 'none';
   }
 });
+
+function pointValue(gameId) {
+  if ((gameId >= 1 && gameId <= 4) || (gameId >= 13 && gameId <= 16)) return 1;
+  else if ((gameId >= 5 && gameId <= 12) || (gameId >= 17 && gameId <= 20)) return 2;
+  else if ((gameId >= 21 && gameId <= 28) || gameId === 31 || gameId === 32) return 3;
+  else if ((gameId >= 29 && gameId <= 30) || (gameId >= 33 && gameId <= 34)) return 4;
+  else if (gameId === 35 || gameId === 36) return 5;
+  else if (gameId === 37 || gameId === 38) return 6;
+  return 0;
+}
 </script>
 </body>
 </html>
