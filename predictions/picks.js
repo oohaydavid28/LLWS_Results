@@ -10,7 +10,7 @@ const officialPicks = [
     { gameId: 9,  winner: "Venezuela" },
     { gameId: 10, winner: "Nevada" },
     { gameId: 11, winner: "Aruba" },
-    { gameId: 12, winner: "" },
+    { gameId: 12, winner: "Connecticut" },
     { gameId: 13, winner: "" },
     { gameId: 14, winner: "" },
     { gameId: 15, winner: "" },
