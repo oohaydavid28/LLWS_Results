@@ -19,7 +19,7 @@ const officialPicks = [
     { gameId: 18, winner: "Canada" },
     { gameId: 19, winner: "Hawaii" },
     { gameId: 20, winner: "Mexico" },
-    { gameId: 21, winner: "" },
+    { gameId: 21, winner: "Japan" },
     { gameId: 22, winner: "" },
     { gameId: 23, winner: "" },
     { gameId: 24, winner: "" },
