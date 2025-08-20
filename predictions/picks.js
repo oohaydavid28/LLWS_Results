@@ -26,7 +26,7 @@ const officialPicks = [
     { gameId: 25, winner: "Japan" },
     { gameId: 26, winner: "South Carolina" },
     { gameId: 27, winner: "Aruba" },
-    { gameId: 28, winner: "" },
+    { gameId: 28, winner: "South Dakota" },
     { gameId: 29, winner: "" },
     { gameId: 30, winner: "" },
     { gameId: 31, winner: "" },
