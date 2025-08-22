@@ -32,7 +32,7 @@ const officialPicks = [
     { gameId: 31, winner: "Aruba" },
     { gameId: 32, winner: "South Carolina" },
     { gameId: 33, winner: "Aruba" },
-    { gameId: 34, winner: "" },
+    { gameId: 34, winner: "Nevada" },
     { gameId: 35, winner: "" },
     { gameId: 36, winner: "" },
     { gameId: 37, winner: "" },
