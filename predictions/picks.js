@@ -36,7 +36,7 @@ const officialPicks = [
     { gameId: 35, winner: "Chinese Taipei" },
     { gameId: 36, winner: "Nevada" },
     { gameId: 37, winner: "Connecticut" },
-    { gameId: 38, winner: "" },
+    { gameId: 38, winner: "Chinese Taipei" },
 ]
 
 const mannyPicks = [
