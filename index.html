@@ -40,7 +40,7 @@
 </head>
 <body>
 
-<h1>LLWS 2025 Bracket Results</h1>
+<h1>LLWS 2026 Bracket Results</h1>
 
 <details style="border: 2px solid #333; padding: 15px; margin-bottom: 20px; background-color: #f8f8f8; max-width: 800px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif; line-height: 1.5;">
     <summary style="margin-top: 0; text-align: center; font-size: 1.25em;">
@@ -71,7 +71,7 @@
 <div style="text-align: center; margin-bottom: 20px;">
     <h2 style="margin-bottom: 10px;">Official Bracket</h2>
     <img src="./brackets/official_bracket.jpg" 
-         alt="LLWS 2025 Offcial Bracket" 
+         alt="LLWS 2026 Offcial Bracket" 
          style="max-width: 100%; height: auto; border: 1px solid #ccc; cursor: pointer;"
          onclick="document.getElementById('bracketModal').style.display='flex'">
 </div>
@@ -83,11 +83,11 @@
     <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;"
           onclick="document.getElementById('bracketModal').style.display='none'">&times;</span>
     <img src="./brackets/official_bracket.jpg" 
-         alt="LLWS 2025 Offcial Bracket" 
+         alt="LLWS 2026 Offcial Bracket" 
          style="max-width:90%; max-height:90%; border:4px solid white; box-shadow:0 0 20px black;">
 </div>
 
-<details open style="border: 2px solid #333; padding: 15px; margin-bottom: 20px; background-color: #f8f8f8; max-width: 800px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif; line-height: 1.5;">
+<!--<details open style="border: 2px solid #333; padding: 15px; margin-bottom: 20px; background-color: #f8f8f8; max-width: 800px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif; line-height: 1.5;">
   <summary style="margin-top: 0; text-align: center; font-size: 1.25em;">
     ️ Win Conditions
   </summary>
@@ -103,7 +103,7 @@
       <li>AND wins the following game</li>
     </ul>
   </div>
-</details>
+</details>-->
 
 
 <div style="max-width: 800px; margin: 20px auto; font-family: Arial, sans-serif;">
@@ -129,17 +129,13 @@
 <script src="predictions/picks.js"></script>
 <script>
 const users = [
-    {name: "David", points: 0, champ: "Pennsylvania", third: "Texas", bracket: "./brackets/david_bracket.jpg", picks: davidPicks},
-    {name: "Bryan", points: 0, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/bryan_bracket.jpg", picks: bryanPicks},
-    {name: "Dennis", points: 0, champ: "Chinese Taipei", third: "Japan", bracket: "./brackets/dennis_bracket.jpg", picks: dennisPicks},
-    {name: "Holden", points: 0, champ: "Hawaii", third: "Mexico", bracket: "./brackets/holden_bracket.jpg", picks: holdenPicks},
-    {name: "Jason", points: 0, champ: "Texas", third: "Chinese Taipei", bracket: "./brackets/jason_bracket.jpg", picks: jasonPicks},
-    {name: "Joe", points: 0, champ: "Japan", third: "Chinese Taipei", bracket: "./brackets/joe_bracket.jpg", picks: joePicks},
-    {name: "Stormy Daniels", points: 0, champ: "Venezuela", third: "Panama", bracket: "./brackets/justin_bracket.jpg", picks: justinPicks},
-    {name: "RaseyLaw", points: 0, champ: "Chinese Taipei", third: "Hawaii", bracket: "./brackets/kasey_bracket.jpg", picks: kaseyPicks},
-    {name: "Loso", points: 0, champ: "Puerto Rico", third: "Chinese Taipei", bracket: "./brackets/loso_bracket.jpg", picks: losoPicks},
-    {name: "Manwellington", points: 0, champ: "Puerto Rico", third: "Mexico", bracket: "./brackets/manny_bracket.jpg", picks: mannyPicks},
-    {name: "Big Dick Milly", points: 0, champ: "Japan", third: "South Carolina", bracket: "./brackets/milly_bracket.jpg", picks: millyPicks}
+    {name: "David", points: 0, champ: "South California", third: "Ohio", bracket: "./brackets/david_bracket.jpg", picks: davidPicks},
+    {name: "Dennis", points: 0, champ: "South California", third: "Japan", bracket: "./brackets/dennis_bracket.jpg", picks: dennisPicks},
+    {name: "Holden", points: 0, champ: "Japan", third: "South Korea", bracket: "./brackets/holden_bracket.jpg", picks: holdenPicks},
+    {name: "Joe", points: 0, champ: "Japan", third: "Mexico", bracket: "./brackets/joe_bracket.jpg", picks: joePicks},
+    {name: "Rasey", points: 0, champ: "Curacao", third: "Dominican Republic", bracket: "./brackets/kasey_bracket.jpg", picks: raseyPicks},
+    {name: "Loso", points: 0, champ: "Ohio", third: "New Jersey", bracket: "./brackets/loso_bracket.jpg", picks: rondellPicks},
+    {name: "Milly", points: 0, champ: "Texas", third: "South California", bracket: "./brackets/milly_bracket.jpg", picks: millyPicks}
 ]
 
 users.forEach(u => {
