@@ -2,7 +2,7 @@ const officialPicks = [
     { gameId: 1,  winner: "Nicaragua" },
     { gameId: 2,  winner: "Washington" },
     { gameId: 3,  winner: "South Korea" },
-    { gameId: 4,  winner: "Massachusetts" },
+    { gameId: 4,  winner: "New Jersey" },
     { gameId: 5,  winner: "" },
     { gameId: 6,  winner: "" },
     { gameId: 7,  winner: "" },
